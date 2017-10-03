@@ -22,7 +22,7 @@ angular
           scope.data[0].push(rxBytes);
           scope.data[1].push(txBytes);
 
-          if (scope.data[0].length > 20) {
+          if (scope.data[0].length > 50) {
             scope.data[0].shift();
             scope.data[1].shift();
           } else {
@@ -117,7 +117,7 @@ angular
         var addDataPoint = function(usage) {
           scope.data[0].push(usage);
 
-          if (scope.data[0].length > 20) {
+          if (scope.data[0].length > 50) {
             scope.data[0].shift();
           } else {
             scope.labels.push("");
