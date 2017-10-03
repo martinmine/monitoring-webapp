@@ -32,6 +32,7 @@ angular
 
         var lastRxBytes = -1;
         var lastTxBytes = -1;
+        var lastTimestamp = Math.floor(Date.now());
 
         setInterval(function() {
           $http({
@@ -41,11 +42,15 @@ angular
             angular.forEach(response.data, function(key) {
               if (key.name == 'eth0') {
                 if (lastRxBytes > 0) {
-                  var deltaRx = key.receive.bytes - lastRxBytes;
-                  var deltaTx = key.transmit.bytes - lastTxBytes;
+                  var now = Math.floor(Date.now());
+                  var timeSpent = now - lastTimestamp;
+                  var deltaRx = (key.receive.bytes - lastRxBytes) / (timeSpent / 1000);
+                  var deltaTx = (key.transmit.bytes - lastTxBytes) / (timeSpent / 1000);
 
+                  // Normalize on time:
                   lastRxBytes = key.receive.bytes;
                   lastTxBytes = key.transmit.bytes;
+                  lastTimestamp = Math.floor(Date.now());
                   addDataPoint(deltaRx, deltaTx);
                 } else {
                   lastRxBytes = key.receive.bytes;
