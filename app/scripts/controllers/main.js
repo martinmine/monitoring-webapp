@@ -16,7 +16,7 @@ angular.module('monitoringWebappApp')
         name: "nginx1",
         ip: "172.16.1.130",
         managerPort: 9001
-      }/*,
+      },
       {
         hostname: "acmeair-host2",
         name: "main-service-liberty1",
@@ -52,6 +52,6 @@ angular.module('monitoringWebappApp')
         name: "support-service-liberty1",
         ip: "172.16.1.145",
         managerPort: 9007
-      },*/
+      }
     ];
   });
